@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	   .shownum{
+	   	float: left;
+	   	color: white;
+	   	background-color: red;
+	   	padding:1em;
+	   	margin:0.5em;
+	   }
+	</style>
+</head>
+<body>
+	<input type="text" name="number" id="num" placeholder="请输入一个数字">
+	<input type="button" value="左侧入" id="left_in">
+	<input type="button" value="右侧入" id="right_in">
+	<input type="button" value="左侧出" id="left_out">
+	<input type="button" value="右侧出" id="right_out">
+	<div id="show"></div><!--此div之间不能有空格，否则其innerHTML不为空-->
+
+	<script>
+	   var queue=[];
+	   var oTxt=document.getElementById('num');
+	   var oBnt_li=document.getElementById('left_in');
+	   var oBnt_ri=document.getElementById('right_in');
+	   var oBnt_lo=document.getElementById('left_out');
+	   var oBnt_ro=document.getElementById('right_out');
+	   var oDiv=document.getElementById('show');
+	   /*for(var i=0;i<oTxt.value.length;i++)
+	   {
+	   	  queue.push(oTxt.value[i].innerHTML);
+	   }*/
+	   function ope()
+	   {
+         
+	   	 oBnt_li.onclick=function()
+	   	 {
+	   	 	/*判断输入框内是否为空，以及不为空时输入的是否为数字*/
+	   	 	if(oTxt.value!='' && isNaN(oTxt.value)==false)
+	   	 	{
+	   	 	    /*在数组的最前端插入输入的数字*/	
+	   	 	    queue.unshift(oTxt.value);
+	   	 	    /*重置oDiv*/
+		   	 	oDiv.innerHTML='';
+		   	 	/*将数组中的数字插入oDiv中*/
+		   	 	for(var i=0;i<queue.length;i++)
+		   	 	{
+	               var oDivs=document.createElement('div');
+		   	 	   oDivs.setAttribute('class','shownum');
+		   	 	   oDivs.innerHTML=queue[i];
+		   	 	   oDiv.appendChild(oDivs);
+		   	 	}
+			}
+			else
+			{
+				alert('请输入数字');
+			}
+	   	 }
+
+	   	 oBnt_ri.onclick=function()
+	   	 {
+	   	 	if(oTxt.value!='' && isNaN(oTxt.value)==false)
+	   	 	{	
+	   	 	    queue.push(oTxt.value);
+		   	 	oDiv.innerHTML='';
+		   	 	for(var i=0;i<queue.length;i++)
+		   	 	{
+	               var oDivs=document.createElement('div');
+		   	 	   oDivs.setAttribute('class','shownum');
+		   	 	   oDivs.innerHTML=queue[i];
+		   	 	   oDiv.appendChild(oDivs);
+		   	 	}
+			}
+			else
+			{
+				alert('请输入数字');
+			}
+	   	 }
+
+	   	 oBnt_lo.onclick=function()
+	   	 {
+	   	 	if(oDiv.innerHTML!='')
+	   	 	{
+		   	 	queue.shift();
+		   	 	oDiv.innerHTML='';
+		   	 	for(var i=0;i<queue.length;i++)
+		   	 	{
+	               var oDivs=document.createElement('div');
+		   	 	   oDivs.setAttribute('class','shownum');
+		   	 	   oDivs.innerHTML=queue[i];
+		   	 	   oDiv.appendChild(oDivs);
+		   	 	}
+		   	}
+		   	else
+		   	{
+		   		alert('请先插入数字');
+		   	}
+	     }
+
+	     oBnt_ro.onclick=function()
+	   	 {
+	   	 	if(oDiv.innerHTML!='')
+	   	 	{
+		   	 	queue.pop();
+		   	 	oDiv.innerHTML='';
+		   	 	for(var i=0;i<queue.length;i++)
+		   	 	{
+	               var oDivs=document.createElement('div');
+		   	 	   oDivs.setAttribute('class','shownum');
+		   	 	   oDivs.innerHTML=queue[i];
+		   	 	   oDiv.appendChild(oDivs);
+		   	 	}
+		   	}
+		   	else
+		   	{
+		   		alert('请先插入数字');
+		   	}
+	     }
+       }
+       ope();
+	</script>
+</body>
+</html>
