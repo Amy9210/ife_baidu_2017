@@ -84,7 +84,8 @@
 	   	 {
 	   	 	if(oDiv.innerHTML!='')
 	   	 	{
-		   	 	queue.shift();
+		   	 	var q_shift=queue.shift();
+		   	 	alert(q_shift);
 		   	 	oDiv.innerHTML='';
 		   	 	for(var i=0;i<queue.length;i++)
 		   	 	{
@@ -104,7 +105,8 @@
 	   	 {
 	   	 	if(oDiv.innerHTML!='')
 	   	 	{
-		   	 	queue.pop();
+		   	 	var q_pop=queue.pop();
+		   	 	alert(q_pop);
 		   	 	oDiv.innerHTML='';
 		   	 	for(var i=0;i<queue.length;i++)
 		   	 	{
